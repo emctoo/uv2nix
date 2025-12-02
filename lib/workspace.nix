@@ -145,6 +145,13 @@ fix (self: {
       config = config';
 
       /*
+        Python constraints for project
+        .
+      */
+      inherit (uvLock) requires-python;
+
+
+      /*
         Generate an overlay to use with pyproject.nix's build infrastructure.
 
         See https://pyproject-nix.github.io/pyproject.nix/lib/build.html
@@ -197,7 +204,7 @@ fix (self: {
         _final: prev:
         let
           # Filter any local packages that might be deactivated by markers or other filtration mechanisms.
-          activeMembers = filter (name: !prev ? name) members;
+          activeMembers = filter (name: prev ? ${name}) members;
 
         in
         listToAttrs (

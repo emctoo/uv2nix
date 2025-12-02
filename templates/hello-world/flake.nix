@@ -76,7 +76,6 @@
             packages = [
               virtualenv
               pkgs.uv
-              pkgs.sphinx
             ];
             env = {
               UV_NO_SYNC = "1";
@@ -86,7 +85,6 @@
             shellHook = ''
               unset PYTHONPATH
               export REPO_ROOT=$(git rev-parse --show-toplevel)
-              . ${virtualenv}/bin/activate
             '';
           };
         }
